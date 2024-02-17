@@ -21,6 +21,7 @@ namespace productDetail.Business.Products
 
         public async Task<List<Product>> GetProduct(string category)
         {
+            
             var apiUrl = $"https://dummyjson.com/products/category/{category}";
 
             var responseString = await client.GetStringAsync(apiUrl);

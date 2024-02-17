@@ -29,9 +29,9 @@ namespace productDetail.Controllers
                 List<string> productResponse = await _categoriesService.GetCategories();
                 return productResponse;
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
-                throw e;
+                throw new Exception(e.Message);
             }
         }
     }

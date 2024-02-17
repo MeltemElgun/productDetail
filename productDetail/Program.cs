@@ -1,5 +1,6 @@
 
 using productDetail.Business;
+using productDetail.Middleware;
 using System.Text.Json.Serialization;
 
 namespace productDetail
@@ -19,10 +20,11 @@ namespace productDetail
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+           
 
             #region Scrutor resolvers  
      
-            var typeBaseService = typeof(BaseService);
+           var typeBaseService = typeof(BaseService);
 
             var assembly = typeBaseService.Assembly; 
 
@@ -38,6 +40,8 @@ namespace productDetail
 
             var app = builder.Build();
 
+            app.UseTimeElapsedCalculate();
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -51,6 +55,8 @@ namespace productDetail
 
 
             app.MapControllers();
+
+            app.UseCustomException();
 
             app.Run();
         }
